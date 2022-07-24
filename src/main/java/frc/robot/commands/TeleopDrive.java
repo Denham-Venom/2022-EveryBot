@@ -4,23 +4,21 @@
 
 package frc.robot.commands;
 
-import frc.robot.subsystems.ExampleSubsystem;
+import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj2.command.CommandBase;
+import frc.robot.Constants;
+import frc.robot.subsystems.DriveTrain;
 
-/** An example command that uses an example subsystem. */
-public class ExampleCommand extends CommandBase {
-  @SuppressWarnings({"PMD.UnusedPrivateField", "PMD.SingularField"})
-  private final ExampleSubsystem m_subsystem;
-
-  /**
-   * Creates a new ExampleCommand.
-   *
-   * @param subsystem The subsystem used by this command.
-   */
-  public ExampleCommand(ExampleSubsystem subsystem) {
-    m_subsystem = subsystem;
+public class TeleopDrive extends CommandBase {
+  /** Creates a new TeleopDrive. */
+  private final DriveTrain drive;
+  private final Joystick pilot;
+  
+  public TeleopDrive(DriveTrain drive, Joystick pilotController) {
     // Use addRequirements() here to declare subsystem dependencies.
-    addRequirements(subsystem);
+    this.drive = drive;
+    pilot = pilotController;
+    addRequirements(drive);
   }
 
   // Called when the command is initially scheduled.
@@ -29,7 +27,13 @@ public class ExampleCommand extends CommandBase {
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
-  public void execute() {}
+  public void execute() {
+    double leftStickY = pilot.getRawAxis(Constants.Drive.LY_AXIS);
+    double rightStickX = pilot.getRawAxis(Constants.Drive.RX_AXIS);
+
+    drive.setLeftMotors(leftStickY + rightStickX);
+    drive.setRightMotors(leftStickY - rightStickX);
+  }
 
   // Called once the command ends or is interrupted.
   @Override
