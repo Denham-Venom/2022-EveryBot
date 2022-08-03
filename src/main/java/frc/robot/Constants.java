@@ -35,8 +35,30 @@ public final class Constants {
 
         /* Joystick IDs */
 
-        public static final int LY_AXIS = 0;
-        public static final int RX_AXIS = 0;
+        public static final int LY_AXIS = 0;  // change when we find the real ids
+        public static final int RX_AXIS = 0;  // change when we find the real ids
+
+    }
+
+    public static final class Shooter {
+
+        public static final int shooterID = 0;  // change when we find the real ids
+        public static final double shooterPower = 0.1; // MUST TEST AND REFINE
+
+    }
+
+    public static final class Intake {
+
+        public static final double intakePower = 0.1; // MUST TEST AND REFINE
+        public static final int intakeArmID = 0;  // change when we find the real ids
+
+        // Arm Controls
+        public static final double armHoldUp = 0.08;
+        public static final double armHoldDown = 0.13;
+        public static final double armTravel = 0.5;
+        public static final double armTimeUp = 0.5;
+        public static final double armTimeDown = 0.35;
+        public static final boolean armUp = true;
 
     }
     

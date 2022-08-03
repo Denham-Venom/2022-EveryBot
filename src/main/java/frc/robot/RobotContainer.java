@@ -7,10 +7,14 @@ package frc.robot;
 import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.XboxController;
+import frc.robot.commands.TeleopArm;
 import frc.robot.commands.TeleopDrive;
+import frc.robot.commands.TeleopShoot;
 import frc.robot.subsystems.DriveTrain;
+import frc.robot.subsystems.IntakeArm;
 import frc.robot.subsystems.Shooter;
 import edu.wpi.first.wpilibj2.command.Command;
+import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 
 /**
  * This class is where the bulk of the robot should be declared. Since Command-based is a
@@ -20,19 +24,29 @@ import edu.wpi.first.wpilibj2.command.Command;
  */
 public class RobotContainer {
    
-  // Joystick 0
-  private final Joystick pilotDriverController = new Joystick(0);
+  // Joysticks
+  private final Joystick driverController = new Joystick(0);
+  private final Joystick operatorController = new Joystick(1);
 
+  // Pilot Buttons
+  private final JoystickButton intakeButton = new JoystickButton(driverController, XboxController.Button.kRightBumper.value);
+
+  // Operator Buttons
+  private final JoystickButton opIntakeButton = new JoystickButton(operatorController, XboxController.Button.kLeftBumper.value);
+  private final JoystickButton shootButton = new JoystickButton(operatorController, XboxController.Button.kRightBumper.value);
+  private final JoystickButton armControlButton = new JoystickButton(operatorController, XboxController.Button.kB.value);
   
   // The robot's subsystems and commands are defined here...
   private final DriveTrain drivetrain = new DriveTrain();
   private final Shooter shooter = new Shooter();
+  private final IntakeArm intakeArm = new IntakeArm();
 
   //private final TeleopDrive m_drive = new TeleopDrive(m_drivetrain, pilotDriverController);
 
 
   /** The container for the robot. Contains subsystems, OI devices, and commands. */
   public RobotContainer() {
+    drivetrain.setDefaultCommand(new TeleopDrive(drivetrain, driverController));
     // Configure the button bindings
     configureButtonBindings();
   }
@@ -43,7 +57,14 @@ public class RobotContainer {
    * edu.wpi.first.wpilibj.Joystick} or {@link XboxController}), and then passing it to a {@link
    * edu.wpi.first.wpilibj2.command.button.JoystickButton}.
    */
-  private void configureButtonBindings() {}
+  private void configureButtonBindings() {
+    intakeButton.whileHeld(new TeleopShoot(shooter, Constants.Intake.intakePower));
+
+    opIntakeButton.whileHeld(new TeleopShoot(shooter, Constants.Intake.intakePower));
+    shootButton.whileHeld(new TeleopShoot(shooter, Constants.Shooter.shooterPower));
+    armControlButton.whenPressed(new TeleopArm(intakeArm));
+    
+  }
 
   /**
    * Use this to pass the autonomous command to the main {@link Robot} class.
