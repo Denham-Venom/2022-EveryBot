@@ -32,9 +32,11 @@ public class RobotContainer {
   private final JoystickButton intakeButton = new JoystickButton(driverController, XboxController.Button.kRightBumper.value);
 
   // Operator Buttons
-  private final JoystickButton opIntakeButton = new JoystickButton(operatorController, XboxController.Button.kLeftBumper.value);
-  private final JoystickButton shootButton = new JoystickButton(operatorController, XboxController.Button.kRightBumper.value);
-  private final JoystickButton armControlButton = new JoystickButton(operatorController, XboxController.Button.kB.value);
+  private final JoystickButton intake = new JoystickButton(operatorController, XboxController.Button.kRightBumper.value);
+  private final JoystickButton outtake = new JoystickButton(operatorController, XboxController.Button.kLeftBumper.value);
+  // private final JoystickButton opIntakeButton = new JoystickButton(operatorController, XboxController.Button.kLeftBumper.value);
+  // private final JoystickButton shootButton = new JoystickButton(operatorController, XboxController.Button.kRightBumper.value);
+  // private final JoystickButton armControlButton = new JoystickButton(operatorController, XboxController.Button.kB.value);
   
   // The robot's subsystems and commands are defined here...
   private final DriveTrain drivetrain = new DriveTrain();
@@ -60,9 +62,11 @@ public class RobotContainer {
   private void configureButtonBindings() {
     intakeButton.whileHeld(new TeleopShoot(shooter, Constants.Intake.intakePower));
 
-    opIntakeButton.whileHeld(new TeleopShoot(shooter, Constants.Intake.intakePower));
-    shootButton.whileHeld(new TeleopShoot(shooter, Constants.Shooter.shooterPower));
-    armControlButton.whenPressed(new TeleopArm(intakeArm));
+    intake.whileHeld(new TeleopShoot(shooter, Constants.Intake.intakePower));
+    outtake.whileHeld(new TeleopShoot(shooter, Constants.Intake.outtakePower));
+    // opIntakeButton.whileHeld(new TeleopShoot(shooter, Constants.Intake.intakePower));
+    // shootButton.whileHeld(new TeleopShoot(shooter, Constants.Shooter.shooterPower));
+    // armControlButton.whenPressed(new TeleopArm(intakeArm));
     
   }
 

@@ -25,22 +25,23 @@ public class IntakeArm extends SubsystemBase {
   }
   
   public void controlArm() {
-    if(Constants.Intake.armUp){
-      if(Timer.getFPGATimestamp() < Constants.Intake.armTimeUp){
-        arm.set(TalonFXControlMode.PercentOutput, Constants.Intake.armTravel);
-      }
-      else{
-        arm.set(TalonFXControlMode.PercentOutput, Constants.Intake.armHoldUp);
-      }
-    }
-    else{
-      if(Timer.getFPGATimestamp() < Constants.Intake.armTimeDown){
-        arm.set(TalonFXControlMode.PercentOutput, -Constants.Intake.armTravel);
-      }
-      else{
-        arm.set(TalonFXControlMode.PercentOutput, -Constants.Intake.armHoldUp);
-      }
-    }
+    
+    // if(Constants.Intake.armUp){
+    //   if(Timer.getFPGATimestamp() < Constants.Intake.armTimeUp){
+    //     arm.set(TalonFXControlMode.PercentOutput, Constants.Intake.armTravel);
+    //   }
+    //   else{
+    //     arm.set(TalonFXControlMode.PercentOutput, Constants.Intake.armHoldUp);
+    //   }
+    // }
+    // else{
+    //   if(Timer.getFPGATimestamp() < Constants.Intake.armTimeDown){
+    //     arm.set(TalonFXControlMode.PercentOutput, -Constants.Intake.armTravel);
+    //   }
+    //   else{
+    //     arm.set(TalonFXControlMode.PercentOutput, -Constants.Intake.armHoldUp);
+    //   }
+    // }
   }
 
   /**
