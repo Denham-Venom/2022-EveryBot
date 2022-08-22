@@ -15,12 +15,12 @@ import frc.robot.Constants;
 
 public class IntakeArm extends SubsystemBase {
   /** Creates a new IntakeArm. */
-  private TalonFX arm = new TalonFX(Constants.Intake.intakeArmID);
+  //private TalonFX arm = new TalonFX(Constants.Intake.intakeArmID);
 
   public IntakeArm() {
-    arm.configFactoryDefault();
-    arm.setInverted(false);
-    arm.setNeutralMode(NeutralMode.Brake);
+    // arm.configFactoryDefault();
+    // arm.setInverted(false);
+    // arm.setNeutralMode(NeutralMode.Brake);
 
   }
   

@@ -43,15 +43,13 @@ public final class Constants {
     public static final class Shooter {
 
         public static final int shooterID = 0;  // change when we find the real ids
-        public static final double shooterPower = 0.1; // MUST TEST AND REFINE
-
     }
 
     public static final class Intake {
 
         public static final double intakePower = 0.1; // MUST TEST AND REFINE
         public static final double outtakePower = -0.1; //MUST TEST AND REFINE
-        public static final int intakeArmID = 0;  // change when we find the real ids
+        // public static final int intakeArmID = 0;  // change when we find the real ids
 
         // Arm Controls
         public static final double armHoldUp = 0.08;
