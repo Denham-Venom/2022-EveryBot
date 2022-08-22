@@ -57,10 +57,10 @@ public class RobotContainer {
    * edu.wpi.first.wpilibj2.command.button.JoystickButton}.
    */
   private void configureButtonBindings() {
-    intakeButton.whileHeld(new TeleopShoot(shooter, Constants.Intake.intakePower));
+    intakeButton.whileHeld(new TeleopShoot(shooter, Constants.Shooter.shooterPower));
 
-    opIntake.whileHeld(new TeleopShoot(shooter, Constants.Intake.intakePower));
-    opOuttake.whileHeld(new TeleopShoot(shooter, Constants.Intake.outtakePower));
+    opIntake.whileHeld(new TeleopShoot(shooter, Constants.Shooter.shooterPower));
+    opOuttake.whileHeld(new TeleopShoot(shooter, Constants.Shooter.outtakePower));
     // opIntakeButton.whileHeld(new TeleopShoot(shooter, Constants.Intake.intakePower));
     // shootButton.whileHeld(new TeleopShoot(shooter, Constants.Shooter.shooterPower));
     // armControlButton.whenPressed(new TeleopArm(intakeArm));
