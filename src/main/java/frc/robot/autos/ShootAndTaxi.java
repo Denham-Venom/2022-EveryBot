@@ -10,7 +10,9 @@ import edu.wpi.first.wpilibj2.command.ParallelDeadlineGroup;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import edu.wpi.first.wpilibj2.command.WaitCommand;
 import frc.robot.Constants;
+import frc.robot.commands.TeleopDrive;
 import frc.robot.commands.TeleopShoot;
+import frc.robot.subsystems.DriveTrain;
 import frc.robot.subsystems.Shooter;
 
 // NOTE:  Consider using this command inline, rather than writing a subclass.  For more
@@ -18,21 +20,23 @@ import frc.robot.subsystems.Shooter;
 // https://docs.wpilib.org/en/stable/docs/software/commandbased/convenience-features.html
 public class ShootAndTaxi extends SequentialCommandGroup {
   /** Creates a new ShootAndTaxi. */
-  public ShootAndTaxi(Shooter shooter) {
+  public ShootAndTaxi(Shooter shooter, DriveTrain drive) {
     // Add your commands in the addCommands() call, e.g.
     // addCommands(new FooCommand(), new BarCommand());
-
-    final Trajectory moveBack;
 
     addCommands(
       // Shoots preloaded ball
       new ParallelDeadlineGroup(
         new WaitCommand(3),
         new InstantCommand(() -> new TeleopShoot(shooter, Constants.Shooter.shooterPower))
+      ),
+
+      // Taxis (moves forward out of tarmac)
+      new ParallelDeadlineGroup(
+        new WaitCommand(2),
+        new InstantCommand(() -> new TeleopDrive(drive, Constants.Drive.AutoDistance))
       )
 
-
-      
     );
   }
 }

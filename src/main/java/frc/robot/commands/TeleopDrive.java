@@ -11,13 +11,23 @@ import frc.robot.subsystems.DriveTrain;
 
 public class TeleopDrive extends CommandBase {
   /** Creates a new TeleopDrive. */
-  private final DriveTrain drive;
-  private final Joystick pilot;
+  private DriveTrain drive;
+  private Joystick pilot;
+  private double speed;
+  private boolean isTeleop;
   
   public TeleopDrive(DriveTrain drive, Joystick pilotController) {
     // Use addRequirements() here to declare subsystem dependencies.
     this.drive = drive;
     pilot = pilotController;
+    isTeleop = true;
+    addRequirements(drive);
+  }
+
+  public TeleopDrive(DriveTrain drive, double speed) {
+    this.drive = drive;
+    this.speed = speed;
+    isTeleop = false;
     addRequirements(drive);
   }
 
@@ -28,11 +38,16 @@ public class TeleopDrive extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    double leftStickY = pilot.getRawAxis(Constants.Drive.LY_AXIS);
-    double rightStickX = pilot.getRawAxis(Constants.Drive.RX_AXIS);
+    if(isTeleop) {
+      double leftStickY = pilot.getRawAxis(Constants.Drive.LY_AXIS);
+      double rightStickX = pilot.getRawAxis(Constants.Drive.RX_AXIS);
 
-    drive.setLeftMotors(leftStickY + rightStickX);
-    drive.setRightMotors(leftStickY - rightStickX);
+      drive.setLeftMotors(leftStickY + rightStickX);
+      drive.setRightMotors(leftStickY - rightStickX);
+    } else {
+      drive.setLeftMotors(speed);
+      drive.setRightMotors(speed);
+    }
   }
 
   // Called once the command ends or is interrupted.

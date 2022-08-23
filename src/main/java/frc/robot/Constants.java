@@ -37,6 +37,7 @@ public final class Constants {
 
         public static final int LY_AXIS = 0;  // change when we find the real ids
         public static final int RX_AXIS = 0;  // change when we find the real ids
+        public static final double AutoDistance = 0.5; // needs to be tested/tuned
 
     }
 
