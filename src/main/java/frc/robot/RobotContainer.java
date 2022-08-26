@@ -8,6 +8,7 @@ import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.autos.ShootAndTaxi;
 import frc.robot.autos.ShootOnly;
 import frc.robot.commands.TeleopDrive;
@@ -52,6 +53,8 @@ public class RobotContainer {
   /** The container for the robot. Contains subsystems, OI devices, and commands. */
   public RobotContainer() {
     drivetrain.setDefaultCommand(new TeleopDrive(drivetrain, driverController));
+    SmartDashboard.putData("Auto Selector", brockAutobamaChooser);
+
 
     brockAutobamaChooser.setDefaultOption("Do Nothing", new WaitCommand(1.0));
     brockAutobamaChooser.addOption("Shoot & Don't Move", new ShootOnly(shooter));
