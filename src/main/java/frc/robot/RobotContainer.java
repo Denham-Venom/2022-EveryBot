@@ -46,7 +46,7 @@ public class RobotContainer {
   private final DriveTrain drivetrain = new DriveTrain();
   private final Shooter shooter = new Shooter();
   SendableChooser<Command> brockAutobamaChooser = new SendableChooser<>();
-
+  
 
   //private final TeleopDrive m_drive = new TeleopDrive(m_drivetrain, pilotDriverController);
 
@@ -54,12 +54,12 @@ public class RobotContainer {
   /** The container for the robot. Contains subsystems, OI devices, and commands. */
   public RobotContainer() {
     drivetrain.setDefaultCommand(new TeleopDrive(drivetrain, driverController));
-    SmartDashboard.putData("Auto Selector", brockAutobamaChooser);
-
-
     brockAutobamaChooser.setDefaultOption("Do Nothing", new WaitCommand(1.0));
     brockAutobamaChooser.addOption("Shoot & Don't Move", new ShootOnly(shooter));
     brockAutobamaChooser.addOption("Shoot and Move Back", new ShootAndTaxi(shooter, drivetrain));
+
+    SmartDashboard.putData("Auto Selector", brockAutobamaChooser);
+
 
     // Configure the button bindings
     configureButtonBindings();
@@ -87,8 +87,8 @@ public class RobotContainer {
    *
    * @return the command to run in autonomous
    */
-  // public Command getAutonomousCommand() {
-  //   // An ExampleCommand will run in autonomous
-  //   return m_autoCommand;
-  // }
+  public Command getAutonomousCommand() {
+    // An ExampleCommand will run in autonomous
+    return brockAutobamaChooser.getSelected();
+  }
 }
