@@ -4,19 +4,19 @@
 
 package frc.robot.subsystems;
 
+import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.NeutralMode;
-import com.ctre.phoenix.motorcontrol.TalonFXControlMode;
-import com.ctre.phoenix.motorcontrol.can.TalonFX;
+import com.ctre.phoenix.motorcontrol.can.VictorSPX;
 
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
 
 public class DriveTrain extends SubsystemBase {
   /** Creates a new DriveTrain. */
-  private TalonFX leftParent = new TalonFX(Constants.Drive.leftParentID);
-  private TalonFX leftChild = new TalonFX(Constants.Drive.leftChildID);
-  private TalonFX rightParent = new TalonFX(Constants.Drive.rightParentID);
-  private TalonFX rightChild = new TalonFX(Constants.Drive.rightChildID);
+  private VictorSPX leftParent = new VictorSPX(Constants.Drive.leftParentID);
+  private VictorSPX leftChild = new VictorSPX(Constants.Drive.leftChildID);
+  private VictorSPX rightParent = new VictorSPX(Constants.Drive.rightParentID);
+  private VictorSPX rightChild = new VictorSPX(Constants.Drive.rightChildID);
 
   public DriveTrain() {
     motorConfig();
@@ -70,11 +70,11 @@ public class DriveTrain extends SubsystemBase {
    * @param output percent [-1.0, 1.0]
    */
   public void setLeftMotors(double output) {
-    leftParent.set(TalonFXControlMode.PercentOutput, output);
+    leftParent.set(ControlMode.PercentOutput, output);
   }
 
   public void setRightMotors(double output) {
-    rightParent.set(TalonFXControlMode.PercentOutput, output);
+    rightParent.set(ControlMode.PercentOutput, output);
   }
 
   public void stopMotors() {

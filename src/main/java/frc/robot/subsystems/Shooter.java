@@ -4,16 +4,16 @@
 
 package frc.robot.subsystems;
 
+import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.NeutralMode;
-import com.ctre.phoenix.motorcontrol.TalonFXControlMode;
-import com.ctre.phoenix.motorcontrol.can.TalonFX;
+import com.ctre.phoenix.motorcontrol.can.VictorSPX;
 
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
 
 public class Shooter extends SubsystemBase {
   /** Creates a new Shooter. */
-  private TalonFX shooter = new TalonFX(Constants.Shooter.shooterID);
+  private VictorSPX shooter = new VictorSPX(Constants.Shooter.shooterID);
 
   public Shooter() {
     shooter.configFactoryDefault();
@@ -27,7 +27,7 @@ public class Shooter extends SubsystemBase {
    * @param output percent [-1.0, 1.0]
    */
   public void setShooterPower(double output) {
-    shooter.set(TalonFXControlMode.PercentOutput, output);
+    shooter.set(ControlMode.PercentOutput, output);
   }
 
   public void stopShooter() {
