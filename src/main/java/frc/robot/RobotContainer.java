@@ -7,11 +7,15 @@ package frc.robot;
 import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.XboxController;
+import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
+import frc.robot.autos.ShootAndTaxi;
+import frc.robot.autos.ShootOnly;
 import frc.robot.commands.TeleopDrive;
 import frc.robot.commands.TeleopShoot;
 import frc.robot.subsystems.DriveTrain;
 import frc.robot.subsystems.Shooter;
 import edu.wpi.first.wpilibj2.command.Command;
+import edu.wpi.first.wpilibj2.command.WaitCommand;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 
 /**
@@ -39,6 +43,8 @@ public class RobotContainer {
   // The robot's subsystems and commands are defined here...
   private final DriveTrain drivetrain = new DriveTrain();
   private final Shooter shooter = new Shooter();
+  SendableChooser<Command> brockAutobamaChooser = new SendableChooser<>();
+
 
   //private final TeleopDrive m_drive = new TeleopDrive(m_drivetrain, pilotDriverController);
 
@@ -46,6 +52,11 @@ public class RobotContainer {
   /** The container for the robot. Contains subsystems, OI devices, and commands. */
   public RobotContainer() {
     drivetrain.setDefaultCommand(new TeleopDrive(drivetrain, driverController));
+
+    brockAutobamaChooser.setDefaultOption("Do Nothing", new WaitCommand(1.0));
+    brockAutobamaChooser.addOption("Shoot & Don't Move", new ShootOnly(shooter));
+    brockAutobamaChooser.addOption("Shoot and Move Back", new ShootAndTaxi(shooter, drivetrain));
+
     // Configure the button bindings
     configureButtonBindings();
   }

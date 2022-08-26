@@ -5,6 +5,7 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj.Joystick;
+import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.Constants;
 import frc.robot.subsystems.DriveTrain;
@@ -39,8 +40,8 @@ public class TeleopDrive extends CommandBase {
   @Override
   public void execute() {
     if(isTeleop) {
-      double leftStickY = pilot.getRawAxis(Constants.Drive.LY_AXIS);
-      double rightStickX = pilot.getRawAxis(Constants.Drive.RX_AXIS);
+      double leftStickY = pilot.getRawAxis(XboxController.Axis.kLeftY.value);
+      double rightStickX = pilot.getRawAxis(XboxController.Axis.kRightX.value);
 
       drive.setLeftMotors(leftStickY + rightStickX);
       drive.setRightMotors(leftStickY - rightStickX);
