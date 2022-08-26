@@ -30,8 +30,8 @@ public final class Constants {
         
         public static final int leftParentID = 1;  // change when we find the real ids
         public static final int leftChildID = 2;   // change when we find the real ids
-        public static final int rightParentID = 3; // change when we find the real ids
-        public static final int rightChildID = 4;  // change when we find the real ids
+        public static final int rightParentID = 4; // change when we find the real ids
+        public static final int rightChildID = 3;  // change when we find the real ids
 
         public static final double AutoDistance = 0.5; // needs to be tested/tuned
     }
@@ -39,8 +39,8 @@ public final class Constants {
     public static final class Shooter {
 
         public static final int shooterID = 5;
-        public static final double shooterPower = 0.1; // MUST TEST AND REFINE
-        public static final double outtakePower = -0.1; //MUST TEST AND REFINE
+        public static final double shooterPower = -1; // MUST TEST AND REFINE
+        public static final double outtakePower = 1; //MUST TEST AND REFINE
     }
     
 }

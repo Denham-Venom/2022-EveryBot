@@ -33,10 +33,11 @@ public class RobotContainer {
 
   // Pilot Buttons
   private final JoystickButton intakeButton = new JoystickButton(driverController, XboxController.Button.kRightBumper.value);
+  private final JoystickButton opOuttake = new JoystickButton(driverController, XboxController.Button.kLeftBumper.value);
 
   // Operator Buttons
   private final JoystickButton opIntake = new JoystickButton(operatorController, XboxController.Button.kRightBumper.value);
-  private final JoystickButton opOuttake = new JoystickButton(operatorController, XboxController.Button.kLeftBumper.value);
+  // private final JoystickButton opOuttake = new JoystickButton(operatorController, XboxController.Button.kLeftBumper.value);
   // private final JoystickButton opIntakeButton = new JoystickButton(operatorController, XboxController.Button.kLeftBumper.value);
   // private final JoystickButton shootButton = new JoystickButton(operatorController, XboxController.Button.kRightBumper.value);
   // private final JoystickButton armControlButton = new JoystickButton(operatorController, XboxController.Button.kB.value);
