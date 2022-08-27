@@ -23,8 +23,8 @@ public class ShootOnly extends SequentialCommandGroup {
     addCommands(
       // Shoots preloaded ball
       new ParallelDeadlineGroup(
-        new WaitCommand(3),
-        new InstantCommand(() -> new TeleopShoot(shooter, Constants.Shooter.shooterPower))
+        new WaitCommand(2),
+        new TeleopShoot(shooter, Constants.Shooter.shooterPower)
       )
     );
   }

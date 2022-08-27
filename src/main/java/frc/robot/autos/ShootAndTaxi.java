@@ -27,14 +27,14 @@ public class ShootAndTaxi extends SequentialCommandGroup {
     addCommands(
       // Shoots preloaded ball
       new ParallelDeadlineGroup(
-        new WaitCommand(3),
-        new InstantCommand(() -> new TeleopShoot(shooter, Constants.Shooter.shooterPower))
+        new WaitCommand(2),
+        new TeleopShoot(shooter, Constants.Shooter.shooterPower)
       ),
 
       // Taxis (moves forward out of tarmac)
       new ParallelDeadlineGroup(
-        new WaitCommand(2),
-        new InstantCommand(() -> new TeleopDrive(drive, Constants.Drive.AutoDistance))
+        new WaitCommand(3),
+        new TeleopDrive(drive, Constants.Drive.AutoDistance)
       )
 
     );
