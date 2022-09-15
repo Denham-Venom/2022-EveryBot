@@ -28,10 +28,11 @@ public final class Constants {
     //  public static final TalonConstants rightChild = 
     //         new TalonConstants(4, talonCurrentLimit.supplyCurLim40, NeutralMode.Brake, InvertType.FollowMaster);
         
-        public static final int leftParentID = 1;  // change when we find the real ids
-        public static final int leftChildID = 2;   // change when we find the real ids
-        public static final int rightParentID = 4; // change when we find the real ids
-        public static final int rightChildID = 3;  // change when we find the real ids
+        // IDs for drivetrain motors
+        public static final int leftParentID = 1;  
+        public static final int leftChildID = 2;   
+        public static final int rightParentID = 4;
+        public static final int rightChildID = 3;
 
         public static final double AutoDistance = 0.5; // needs to be tested/tuned
     }
